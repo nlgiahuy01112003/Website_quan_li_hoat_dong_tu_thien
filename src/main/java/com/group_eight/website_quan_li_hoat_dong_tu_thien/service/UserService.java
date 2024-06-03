@@ -2,6 +2,9 @@ package com.group_eight.website_quan_li_hoat_dong_tu_thien.service;
 
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.*;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.repository.*;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,6 +30,7 @@ public class UserService {
         sendVerificationEmail(user);
     }
 
+    @SneakyThrows
     private void sendVerificationEmail(User user) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
