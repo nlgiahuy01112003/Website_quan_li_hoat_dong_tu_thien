@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User - Donation Cards</title>
+</head>
+<body>
+<h1>Donation Cards</h1>
+<div th:each="card : ${donationCards}">
+    <h2 th:text="${card.title}">Title</h2>
+    <p th:text="${card.description}">Description</p>
+    <p>Target Amount: <span th:text="${card.targetAmount}">Target Amount</span></p>
+    <p>Start Date: <span th:text="${card.startDate}">Start Date</span></p>
+    <p>End Date: <span th:text="${card.endDate}">End Date</span></p>
+    <a th:href="@{/donation-cards/{id}(id=${card.id})}">View Details</a>
+</div>
+</body>
+</html>
