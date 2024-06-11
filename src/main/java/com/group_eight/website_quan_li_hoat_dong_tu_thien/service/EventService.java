@@ -16,7 +16,9 @@ public class EventService {
     public List<Event> findByCampaign(Campaign campaign) {
         return eventRepository.findByCampaign(campaign);
     }
-
+    public List<Event> findAll() {
+        return eventRepository.findAll();
+    }
     public void save(Event event) {
         eventRepository.save(event);
     }

@@ -24,6 +24,7 @@ public class DonationService {
         return donationRepository.findByCampaign(campaign);
     }
 
+
     public void save(Donation donation) {
         donationRepository.save(donation);
         sendThankYouEmail(donation);
