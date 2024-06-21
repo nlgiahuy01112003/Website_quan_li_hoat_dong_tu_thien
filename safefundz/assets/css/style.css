@@ -4258,6 +4258,7 @@ textarea.form-control-lg {
 }
 
 .navbar {
+  border-radius: 10px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
