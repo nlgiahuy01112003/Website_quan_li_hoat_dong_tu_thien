@@ -1,8 +1,9 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "Category")

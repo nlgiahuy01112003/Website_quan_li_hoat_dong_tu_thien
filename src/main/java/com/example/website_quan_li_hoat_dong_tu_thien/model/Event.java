@@ -52,6 +52,6 @@ public class Event {
     @Column(name = "HIDE", nullable = false)
     private boolean hide;
 
-//    @OneToMany(mappedBy = "product")
+//    @OneToMany(mappedBy = "event")
 //    private Set<CartDetail> cartDetails;
 }

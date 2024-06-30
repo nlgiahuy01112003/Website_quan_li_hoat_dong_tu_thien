@@ -14,7 +14,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class CartDetailId implements Serializable {
     private Long cartId;
-    private Long eventId; // Đổi tên từ productId thành eventId
+    private Long eventId; // Đổi tên từ eventId thành eventId
 
     @Override
     public boolean equals(Object o) {

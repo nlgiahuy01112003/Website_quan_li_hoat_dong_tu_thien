@@ -1,106 +1,106 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.controller;
 
-import com.example.website_quan_li_hoat_dong_tu_thien.service.*;
-import com.example.website_quan_li_hoat_dong_tu_thien.model.*;
-import jakarta.validation.Valid;
+import com.example.website_quan_li_hoat_dong_tu_thien.model.Category;
+import com.example.website_quan_li_hoat_dong_tu_thien.model.Event;
+import com.example.website_quan_li_hoat_dong_tu_thien.service.CategoryService;
+import com.example.website_quan_li_hoat_dong_tu_thien.service.EventService;
+import com.example.website_quan_li_hoat_dong_tu_thien.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/events")
 @RequiredArgsConstructor
 @Slf4j
 public class EventController {
     private final CategoryService categoryService;
     private final MenuService menuService;
-    private final ProductService productService;
+    private final EventService eventService;
+
     @GetMapping
-    public String showProductList(Model model) {
-        List<Menu> menus = menuService.findAll();
-        Map<Category, List<Event>> categoryProducts =
-                productService.getTop6ProductsByCategory();
-        model.addAttribute("categoryProducts", categoryProducts);
-        model.addAttribute("menus", menus);
-        return "/products/product-list";
+    public String showEventList(Model model) {
+        List<Event> events = eventService.findAll();
+        model.addAttribute("events", events);
+        return "events/event-list";
     }
+
     @GetMapping("/detail/{link}")
-    public String productDetail(@PathVariable String link, Model model) {
-        Optional<Event> productOpt = productService.getProductByLink(link);
-        if (productOpt.isPresent()) {
-            model.addAttribute("product", productOpt.get());
+    public String eventDetail(@PathVariable String link, Model model) {
+        Optional<Event> eventOpt = eventService.getEventByLink(link);
+        if (eventOpt.isPresent()) {
+            model.addAttribute("event", eventOpt.get());
             addCommonAttributes(model);
-            return "/products/productDetail";
+            return "events/event-detail";
         } else {
-            return "error"; // Handle the case when the product is not found
+            return "error"; // Handle the case when the event is not found
         }
     }
+
     @GetMapping("/{category}")
-    public String ProductCategory(Model model, @PathVariable String category,
-                                  @RequestParam(name = "page", defaultValue = "0") int page) {
+    public String eventCategory(@PathVariable String category, Model model) {
         Category cat = categoryService.findByLink(category);
         if (cat == null) {
-            return "error"; // Xử lý khi không tìm thấy danh mục
+            return "error"; // Handle the case when the category is not found
         }
-        int categoryId = cat.getId();
-        List<Event> productsForCategory =
-                productService.getProductsByCategoryId(categoryId);
+        List<Event> eventsForCategory = eventService.getEventsByCategoryId(cat.getId());
         model.addAttribute("categoryName", cat.getName());
-        model.addAttribute("productsForCategory", productsForCategory);
+        model.addAttribute("eventsForCategory", eventsForCategory);
         addCommonAttributes(model);
-        return "products/product";
+        return "events/event-category";
     }
+
     private void addCommonAttributes(Model model) {
         model.addAttribute("categories", categoryService.findAll());
         model.addAttribute("menus", menuService.findAll());
     }
-    // For adding a new product 
+
     @GetMapping("/add")
     public String showAddForm(Model model) {
-        model.addAttribute("product", new Event());
+        model.addAttribute("event", new Event());
         model.addAttribute("categories", categoryService.findAll());
-        return "/products/add-product";
+        return "events/add-event";
     }
-    // Process the form for adding a new product 
+
     @PostMapping("/add")
-    public String addProduct(@Valid Event product, BindingResult result) {
+    public String addEvent(@Valid Event event, BindingResult result) {
         if (result.hasErrors()) {
-            return "/products/add-product";
+            return "events/add-event";
         }
-        productService.addProduct(product);
-        return "redirect:/products";
+        eventService.addEvent(event);
+        return "redirect:/events";
     }
+
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable String link, Model model) {
-        Optional<Event> productOptional = productService.getProductByLink(link);
-        if (productOptional.isPresent()) {
-            Event product = productOptional.get();
-            model.addAttribute("product", product);
-            model.addAttribute("categories", categoryService.findAll());
-            return "/products/update-product";
-        } else {
-            throw new IllegalArgumentException("Invalid product Id: " + link);
-        }
+    public String showEditForm(@PathVariable int id, Model model) {
+        Event event = eventService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Event not found: " + id));
+        model.addAttribute("event", event);
+        model.addAttribute("categories", categoryService.findAll());
+        return "events/edit-event";
     }
+
     @PostMapping("/update/{id}")
-    public String updateProduct(@PathVariable Long id, @Valid Event product,
-                                BindingResult result) {
+    public String updateEvent(@PathVariable int id, @Valid Event event, BindingResult result) {
         if (result.hasErrors()) {
-            product.setId(Math.toIntExact(id));
-            return "/products/update-product";
+            event.setId(id);
+            return "events/edit-event";
         }
-        productService.updateProduct(product);
-        return "redirect:/products";
+        eventService.updateEvent(event);
+        return "redirect:/events";
     }
-    // Handle request to delete a product 
+
     @GetMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        productService.deleteProductById(Math.toIntExact(id));
-        return "redirect:/products";
+    public String deleteEvent(@PathVariable int id) {
+        eventService.deleteEventById(id);
+        return "redirect:/events";
     }
-} 
+}

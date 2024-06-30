@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head th:replace="Fragments/head :: head"></head>
+<body>
+<div th:replace="Fragments/header :: header(${menus})"></div>
+<div class="content">
+    <div class="container">
+        <div th:replace="Fragments/container :: container"></div>
+        <div class="col-md-12">
+            <div layout:fragment="content">
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="Fragments/footer :: footer"></div>
+<script th:src="@{/wwwroot/js/jquery.min.js}"></script>
+<script th:src="@{/wwwroot/js/bootstrap.min.js}"></script>
+</body>
+</html>
