@@ -99,6 +99,11 @@ public class ProjetController {
         model.addAttribute("projet", project);
         return "ProjetEdit";
     }
+    @PostMapping("/projets/{id}/delete")
+    public String deleteProjet(@PathVariable("id") Long projectId) {
+        projetService.delete(projectId);
+        return "redirect:/Projet";
+    }
 
 
     @PostMapping("/projets/{id}/edit")

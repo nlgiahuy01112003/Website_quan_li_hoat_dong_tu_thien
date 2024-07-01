@@ -61,7 +61,7 @@
 </div>
 <!-- Causes End -->
 
-<div class="button-pad">
+<div class="button-pad" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
     <a th:href="@{/Upload}"><button class="button-30" role="button">+ADD PROJECT</button></a>
 </div>
 
