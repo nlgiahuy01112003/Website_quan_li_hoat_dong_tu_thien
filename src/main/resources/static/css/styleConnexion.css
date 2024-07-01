@@ -1,0 +1,453 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:  url(../images/kiwihug-3gifzboyZk0-unsplash.jpg);
+}
+
+
+.information .icon {
+    margin-left: auto;
+    padding-right: 30px;
+    
+}
+
+.navbar {
+    width: 100%;
+    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+    z-index: 10;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    z-index: 10;
+}
+
+.navbar .menu-items {
+    display: flex;
+}
+
+.navbar .nav-container li {
+    list-style: none;
+}
+
+.navbar .nav-container a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+}
+
+.navbar .nav-container a:hover{
+    font-weight: bolder;
+}
+
+.nav-container {
+    display: block;
+    position: relative;
+    height: 60px;
+
+}
+
+.nav-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+    height: 26px;
+    width: 32px;
+    position: absolute;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.nav-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: black;
+}
+
+.nav-container .hamburger-lines .line1 {
+    transform-origin: 0 0;
+    transition: transform 0.4s ease-in-out;
+
+}
+
+.nav-container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+    transform-origin: 0 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+    padding-top: 120px;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    height: 100vh;
+    width: 100%;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+}
+
+.navbar .menu-items li {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.logo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 1.2rem;
+    color: #0e2431;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image:  url(../images/kiwihug-3gifzboyZk0-unsplash.jpg);
+
+
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+
+.forms-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.forms {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 30px;
+    padding-top: 70px;
+}
+
+.form-wrapper {
+    animation: hideLayer .3s ease-out forwards;
+}
+
+.form-wrapper.is-active {
+    animation: showLayer .3s ease-in forwards;
+}
+
+@keyframes showLayer {
+    50% {
+        z-index: 1;
+    }
+    100% {
+        z-index: 1;
+    }
+}
+
+@keyframes hideLayer {
+    0% {
+        z-index: 1;
+    }
+    49.999% {
+        z-index: 1;
+    }
+}
+
+.switcher {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transform: translateX(0);
+    transition: all .3s ease-out;
+}
+
+.form-wrapper.is-active .switcher-login {
+    color: #000000;
+    transform: translateX(90px);
+}
+
+.form-wrapper.is-active .switcher-signup {
+    color: #000000;
+    transform: translateX(-90px);
+}
+
+.underline {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+    width: 100%;
+    height: 2px;
+}
+
+.underline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: inherit;
+    display: block;
+    width: inherit;
+    height: inherit;
+    background-color: currentColor;
+    transition: transform .2s ease-out;
+}
+
+.switcher-login .underline::before {
+    transform: translateX(101%);
+}
+
+.switcher-signup .underline::before {
+    transform: translateX(-101%);
+}
+
+.form-wrapper.is-active .underline::before {
+    transform: translateX(0);
+}
+
+.form {
+    overflow: hidden;
+    min-width: 260px;
+    margin-top: 50px;
+    padding: 150px 100px 30px;
+    border-radius: 5px;
+    transform-origin: top;
+}
+
+.form-login {
+    animation: hideLogin .3s ease-out forwards;
+
+}
+
+.form-wrapper.is-active .form-login {
+    animation: showLogin .3s ease-in forwards;
+}
+
+@keyframes showLogin {
+    0% {
+        background: #d7e7f1;
+        transform: translate(40%, 10px);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+    100% {
+        background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+        transform: translate(35%, -20px);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+
+    }
+}
+
+@keyframes hideLogin {
+    0% {
+        background-color: #fff;
+        transform: translate(35%, -20px);
+    }
+    50% {
+        transform: translate(0, 0);
+    }
+    100% {
+        background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+        transform: translate(40%, 10px);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+
+    }
+}
+
+.form-signup {
+    animation: hideSignup .3s ease-out forwards;
+}
+
+.form-wrapper.is-active .form-signup {
+    animation: showSignup .3s ease-in forwards;
+}
+
+@keyframes showSignup {
+    0% {
+        background: #d7e7f1;
+        transform: translate(-40%, 10px) scaleY(.8);
+    }
+    50% {
+        transform: translate(0, 0) scaleY(.8);
+    }
+    100% {
+        background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+        transform: translate(-35%, -20px) scaleY(1);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+
+    }
+}
+
+@keyframes hideSignup {
+    0% {
+        background-color: #fff;
+        transform: translate(-35%, -20px) scaleY(1);
+    }
+    50% {
+        transform: translate(0, 0) scaleY(.8);
+    }
+    100% {
+        background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+        transform: translate(-40%, 10px) scaleY(.8);
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+
+    }
+}
+
+.form fieldset {
+    position: relative;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: all .3s ease-out;
+
+}
+
+.form-login fieldset {
+    transform: translateX(-50%);
+}
+
+.form-signup fieldset {
+    transform: translateX(50%);
+}
+
+.form-wrapper.is-active fieldset {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity .4s ease-in, transform .35s ease-in;
+}
+
+.form legend {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+}
+
+
+.input-block {
+    margin-bottom: 20px;
+}
+
+.input-block label {
+    font-size: 14px;
+    color: #000000;
+}
+
+.input-block input {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #3b4465;
+    background: #eef9fe;
+    border: 1px solid #cddbef;
+    border-radius: 2px;
+}
+
+.form [type='submit'] {
+    opacity: 0;
+    display: block;
+    min-width: 120px;
+    margin: 30px auto 10px;
+    font-size: 18px;
+    line-height: 40px;
+    border-radius: 25px;
+    border: none;
+    transition: all .3s ease-out;
+}
+
+.form-wrapper.is-active .form [type='submit'] {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all .4s ease-in;
+}
+
+.btn-login {
+    color: #fbfdff;
+    background: #FDBE33;
+    transform: translateX(-30%);
+}
+
+.btn-signup {
+    color: black;
+    background: #FDBE33;
+
+    transform: translateX(30%);
+}
+.btn-signup:hover{
+    box-shadow: inset 0 0 0 2px darkblue;;
+}
+.btn-login:hover{
+    box-shadow: inset 0 0 0 2px darkblue;;
+}
+.ok{
+
+}

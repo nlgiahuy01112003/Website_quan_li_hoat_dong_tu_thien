@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb - Connexion</title>
+    <link th:href="@{/css/styleConnexion.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div class="banner">
+    <div th:replace="~{enTete :: enTete(username=${username})}"></div>
+
+    <section class="forms-section">
+        <div class="forms">
+            <div class="form-wrapper is-active">
+                <button type="button" class="switcher switcher-login">
+                    Login
+                    <span class="underline"></span>
+                </button>
+
+                <form class="form form-login" method="post" th:action="@{/login}">
+                    <div th:if="${param.error}" class="alert alert-success">
+                       GO  NEXT PAGE
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        GO NEXT PAGE</div>
+                    <img th:src="@{/images/pin_PNG64.png}" alt="Image pin" style="width: 150px; height: auto; padding-left: 60px">
+                    <fieldset>
+                        <legend>Please, enter your username and password for login.</legend>
+                        <div class="input-block">
+                            <label >Username</label>
+                            <input  type="text" required  id="username" name="username">
+                        </div>
+                        <div class="input-block">
+                            <label >Password</label>
+                            <input  type="password" required  id="password" name="password">
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn-login" th:href="@{/register}">Login</button>
+                </form>
+            </div>
+            <div class="form-wrapper">
+                <button type="button" class="switcher switcher-signup">
+                    NEXT PAGE
+                    <span class="underline"></span>
+                </button>
+                <form class="form form-signup">
+                    <div th:if="${param.error}" class="alert alert-success">
+                        Invalid username and password.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.</div>
+
+                    <img th:src="@{/images/pin_PNG64.png}" alt="Image pin" style="width: 150px; height: auto; padding-left: 60px">
+                    <fieldset>
+
+                        <div class="input-block">
+
+
+                        </div>
+
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    const switchers = [...document.querySelectorAll('.switcher')];
+    switchers.forEach(item => {
+        item.addEventListener('click', function() {
+            switchers.forEach(item => item.parentElement.classList.remove('is-active'));
+            this.parentElement.classList.add('is-active');
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit User</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+  <div>
+    <h2 class="text-center m-3">Edit User</h2>
+  </div>
+  <form th:action="@{/users/{username}/edit(id=${user.username})}" th:object="${user}" method="post" enctype="multipart/form-data" style="max-width: 700px; margin: 0 auto; background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+    <div class="border border-secondary rounded p-3">
+      <input type="hidden" th:field="*{id}" />
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Username:</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" th:field="*{username}" required />
+          <p th:if="${#fields.hasErrors('username')}" class="text-danger" th:errors="*{username}"></p>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Email:</label>
+        <div class="col-sm-8">
+          <input type="email" class="form-control" th:field="*{email}" required />
+          <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <input  type="submit" value="Save" class="btn btn-primary m-3" />
+        <a href="/AdminUtilisateur"><input type="button" value="See All Users" class="btn btn-secondary" /></a>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

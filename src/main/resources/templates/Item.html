@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb</title>
+
+    <link th:href="@{/css/styleItem.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://code.jquery.com/jquery-3.6.0.min.js" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="banner">
+    <div th:replace="~{enTete :: enTete}" ></div>
+
+
+        <div class="container">
+            <h1 style="font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            padding-top: 40px;
+            text-align: center;">Customized Donation Basket</h1>
+            <div class="custom-container" >
+                <div class="spread" style="border: solid 2px black;background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+                    <div class="spread__left" style="background-image: url('../images/food.jpg');">
+                    </div>
+                    <div class="spread__right">
+                        <div class="title">
+                            <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;">
+                            <h1 class="large">1</h1>
+                            <h1 class="medium">Choix</h1>
+                            <h1 class="large"><span class="tiny">de</span>don</h1>
+                            <h1 class="small">Choosing your donation</h1>
+                        </div>
+                        <div class="button-pad">
+                            <a ><button class="button-30" role="button"  >+COMING SOON</button></a>
+
+                        </div>
+                        <div class="content">
+                            <div class="fr" lang="fr">
+                                <h2>Lorsque vous sélectionnez un article à donner via notre plateforme, que ce soit de l'eau, des vêtements, des livres ou des médicaments, vous franchissez la première étape pour faire la différence!</h2>
+                                <p>Vous parcourez notre sélection d'articles essentiels, spécifiquement choisis pour répondre aux besoins urgents des familles défavorisées. Une fois votre choix fait, vous procédez à la commande de l'article, en fournissant les détails nécessaires comme l'adresse du destinataire. Cela marque le début du voyage de votre don.</p>
+                            </div>
+
+                            <div class="en" lang="en">
+                                <h2>When you select an item to donate through our platform, whether it's water, clothes, books, or medication, you're taking the first step in making a difference!</h2>
+                                <p>You browse through our selection of essential items, specifically chosen to address the urgent needs of disadvantaged families. Once you've made your choice, you proceed to order the item, providing necessary details like the recipient's address. This marks the beginning of the journey for your donation.</p>
+                            </div>
+                        </div>
+                        <div class="spread__page-bottom">
+                           <i class="fa-sharp fa-solid fa-cart-shopping fa-3x"></i>
+                            <div class="num">1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+<div class="custom-container">
+    <div class="spread" style="border: solid 2px black;background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+        <div class="spread__left">
+
+        </div>
+        <div class="spread__right">
+            <div class="title">
+                <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;">
+                <h1 class="large">2</h1>
+                <h1 class="medium">Gestion</h1>
+                <h1 class="large"><span class="tiny">de</span>l'envoie</h1>
+                <h1 class="small">Handling Shipping:</h1>
+            </div>
+            <a ><button class="button-31" role="button"  >+COMING SOON</button></a>
+            <div class="content">
+                <div class="fr" lang="fr">
+                    <h2>Après avoir passé votre commande, c'est à notre tour d'agir. Nous passons sans heurts à la phase logistique, où les demandes d'expédition sont automatiquement générées!</h2>
+                    <p>These requests are then forwarded to our trusted network of logistics partners who specialize in international freight and humanitarian aid delivery. They take charge of coordinating the pickup of your donated item from our designated distribution centers. Their meticulous planning ensures that your donation is safely and efficiently transported to its destination, all while maintaining the highest standards of safety and quality.</p>
+                </div>
+                <div class="en" lang="en">
+                    <h2>After you've placed your order, it's our turn to take action. We seamlessly transition into the logistics phase, where shipping requests are automatically generated!</h2>
+                    <p>Ces demandes sont ensuite transmises à notre réseau de partenaires logistiques de confiance, spécialisés dans le fret international et la livraison d'aide humanitaire. Ils prennent en charge la coordination de la collecte de votre article donné depuis nos centres de distribution désignés. Leur planification méticuleuse garantit que votre don est transporté en toute sécurité et efficacement vers sa destination, tout en respectant les normes les plus élevées de sécurité et de qualité.</p>
+                </div>
+            </div>
+            <div class="spread__page-bottom">
+                <i class="fa-solid  fa-apple-whole fa-3x"></i>
+                <div class="num">2</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-container">
+    <div class="spread" style="border: solid 2px black;background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');" >
+        <div class="spread__left" style="background-image: url('../images/bateau.jpg');">
+        </div>
+        <div class="spread__right">
+            <div class="title">
+                <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;">
+                <h1 class="large">3</h1>
+                <h1 class="medium">Gestion</h1>
+                <h1 class="large"><span class="tiny">de</span>Doine</h1>
+                <h1 class="small">Customs management</h1>
+            </div>
+            <a ><button class="button-32" role="button"  >+COMING SOON</button></a>
+            <div class="content">
+                <div class="fr" lang="fr">
+                    <h2>Au fur et à mesure que votre don franchit les frontières internationales, nos partenaires logistiques gèrent toutes les procédures nécessaires de dédouanement!</h2>
+                    <p> Cela implique la préparation et la soumission de documents méticuleux aux autorités compétentes, notamment des factures, des listes de colisage et des déclarations en douane. Nous veillons au respect total des réglementations et des tarifs d'importation, facilitant ainsi le passage en douceur de votre don dans le pays destinataire. Cette attention aux détails réduit les retards et garantit que votre don atteint sa destination rapidement.</p>
+                </div>
+                <div class="en" lang="en">
+                    <h2>As your donation crosses international borders, our logistics partners handle all necessary customs clearance procedures!</h2>
+                    <p>These trusted partners take charge of coordinating the pickup of the ordered items from designated warehouses or suppliers. They meticulously plan the transportation route to ensure timely and efficient delivery while adhering to the highest standards of safety and quality. Throughout this process, transparency and accountability remain paramount, with users receiving regular updates on the status of their shipments through the application.</p>
+                </div>
+            </div>
+            <div class="spread__page-bottom">
+                <i class="fa-solid fa-anchor fa fa-3x" style="position: absolute;bottom: 100%;right: 0;"></i>
+                <div class="num">3</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-container">
+    <div class="spread" style="border: solid 2px black; background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+        <div class="spread__left" style="background-image: url('../images/don.jpg');">
+        </div>
+        <div class="spread__right">
+            <div class="title">
+                <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;">
+                <h1 class="large">4</h1>
+                <h1 class="medium">Distribution</h1>
+                <h1 class="large"><span class="tiny"></span> final</h1>
+                <h1 class="small">Last Distribution:</h1>
+            </div>
+            <a ><button class="button-33" role="button"  >+COMING SOON</button></a>
+            <div class="content">
+                <div class="fr" lang="fr">
+                    <h2>À son arrivée dans le pays destinataire, le voyage de votre don est loin d'être terminé. Des partenaires de distribution locaux et des organisations humanitaires interviennent pour prendre en charge la responsabilité de la livraison et de la distribution de dernière mile!</h2>
+                    <p> Ils collaborent étroitement avec les leaders communautaires et les autorités locales pour identifier les zones de plus grand besoin et prioriser la distribution de l'aide en conséquence. Des villages reculés aux centres urbains, tous les efforts sont déployés pour garantir que votre don parvienne entre les mains de ceux qui en ont le plus besoin. </p>
+                </div>
+                <div class="en" lang="en">
+                    <h2>Upon arrival in the recipient country, the journey of your donation is far from over. Local distribution partners and humanitarian organizations step in to take over the responsibility of last-mile delivery and distribution!</h2>
+                    <p>They work closely with community leaders and local authorities to identify areas of greatest need and prioritize the distribution of aid accordingly. From remote villages to urban centers, every effort is made to ensure that your donation reaches the hands of those who need it most. </p>
+                </div>
+            </div>
+            <div class="spread__page-bottom">
+                <i class="fa-solid fa-hand-holding-hand fa-3x"></i>
+                <div class="num">4</div>
+            </div>
+        </div>
+    </div>
+</div>
+<ol class="custom">
+    <li class="step-1" style="position: absolute;
+    top: 350px; /* Position verticale */
+    left: 250px; /* Position horizontale */
+z-index: -1;border: solid 2px black; width: 400px;height: 400px;pointer-events: auto;background:url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');"  >
+
+        <div class="icon"><i class="fa-solid fa-bicycle"></i></div>
+        <div class="title">Step 1</div>
+        <div class="descr">Times:<br>1-2 hours</div>
+        <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;position: absolute;padding-bottom: 140px">
+    </li>
+    <li class="step-2"style="position: absolute;
+    top: 1168px; /* Position verticale */
+    left: 250px; /* Position horizontale */
+z-index: -1;border: solid 2px black; width: 400px;height: 400px;background:url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');"; >
+        <div class="icon"><i class="fa-solid fa-car"></i></div>
+        <div class="title">Step 2</div>
+        <div class="descr">Times:<br>1-3 days</div>
+        <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;position: absolute;padding-bottom: 340px;padding-right: 100px">
+        <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;position: absolute;padding-bottom: 300px;padding-left: 150px">
+    </li>
+    <li class="step-3" style="position: absolute;
+    top: 1978px; /* Position verticale */
+    left: 250px; /* Position horizontale */
+z-index: -1;border: solid 2px black;width: 400px;height: 400px;background:url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');transform: rotate(-3deg)">
+        <div class="icon"><i class="fa-solid fa-helicopter"></i></div>
+        <div class="title">Step 3</div>
+        <div class="descr">Times:<br>6 days</div>
+        <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;position: absolute;padding-bottom: 300px;padding-left: 150px">
+    </li>
+    <li class="step-4" style="position: absolute;
+    top: 2850px; /* Position verticale */
+    left: 250px; /* Position horizontale */
+z-index: -1;border: solid 2px black;width: 400px;height: 400px;background:url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');transform: rotate(2deg)">
+        <div class="icon"><i class="fa-solid fa-plane"></i></div>
+        <div class="title">Step 4</div>
+        <div class="descr">Times:<br>1 week</div>
+        <img class="pin" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 90px; height: auto;position: absolute;padding-bottom: 300px;padding-left: 10px">
+    </li>
+
+</ol>
+    </body>
+</html>

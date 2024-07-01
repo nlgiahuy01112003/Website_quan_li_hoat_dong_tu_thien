@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELPZ - Free Charity Website Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="enTete :: enTete"></div>
+
+<!-- Causes Start -->
+<div class="causes">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Popular Causes</p>
+            <h2>Let's know about charity causes around the world</h2>
+        </div>
+        <!-- Carousel Start -->
+        <div class="owl-carousel causes-carousel">
+            <div class="causes-item" th:each="projet : ${projets}">
+                <div class="causes-img">
+                    <img class="imageProjet" th:src="@{'/images/' + ${projet.photoUrl}}" alt="Image">
+                </div>
+                <img class="pin" src="/images/pin_PNG64.png" alt="Image pin" style="width: 60px; height: auto;">
+                <div class="causes-progress">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" th:style="'width:' + ((100 * ${projet.amount}) / ${projet.totalAmount}) + '%;'" th:attr="aria-valuenow=((100 * ${projet.amount}) / ${projet.totalAmount})" aria-valuemin="0" aria-valuemax="100">
+                            <span th:text="((100 * ${projet.amount}) / ${projet.totalAmount}) + '%'"></span>
+                        </div>
+                    </div>
+                    <div class="progress-text">
+                        <strong><p th:text="'Raised: ' + ${projet.amount} + '$'"></p></strong>
+                        <strong><p th:text="'Goal: ' + ${projet.totalAmount} + '$'"></p></strong>
+                    </div>
+                </div>
+                <div class="causes-text">
+                    <h3 th:text="${projet.title}"></h3>
+                    <p th:text="${projet.content}"></p>
+                </div>
+                <div class="causes-btn">
+                    <a class="btn btn-custom" th:href="@{/ProjectDetails(id=${projet.id})}">Donate Now</a>
+                    <a class="btn btn-custom" th:href="@{/ProjectDetails1(id=${projet.id})}">Tham gia </a>
+
+
+                </div>
+                <a  ></a>
+            </div>
+
+        </div>
+        <!-- Carousel End -->
+    </div>
+</div>
+<!-- Causes End -->
+
+<div class="button-pad">
+    <a th:href="@{/Upload}"><button class="button-30" role="button">+ADD PROJECT</button></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

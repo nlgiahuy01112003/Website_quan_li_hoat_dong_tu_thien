@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div>
+        <h2 class="text-center m-3">Edit Project</h2>
+    </div>
+    <form th:action="@{/projets/{id}/edit(id=${projet.id})}" th:object="${projet}" method="post" enctype="multipart/form-data" style="max-width: 700px; margin: 0 auto; background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+        <div class="border border-secondary rounded p-3">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Nom Projet:</label>
+                <input type="hidden" th:field="*{id}" />
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{title}" required />
+                    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+                </div>
+
+            </div>
+            <!-- Afficher l'image actuelle du projet -->
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Image Actuelle:</label>
+                <div class="col-sm-8">
+                    <img th:src="@{'/images/' + ${projet.photoUrl}}" alt="Project Image" style="width: 200px; height: auto;">
+                </div>
+            </div>
+
+            <img class="pinnet" src="/images/pin_PNG64.png" alt="Image pin" style="width: 100px; height: auto;">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Description:</label>
+                <div class="col-sm-8">
+                    <textarea style="width: 400px; height: 300px" class="form-control" th:field="*{content}" required></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Montant:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{amount}" required />
+                </div>
+                <label class="col-sm-4 col-form-label">Total Montant:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{totalAmount}" required />
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Enregistrer" class="btn btn-primary m-3" />
+                <a href="/Projet"><input type="button" value="See All Project" class="btn btn-secondary" /></a>
+                    <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/AdminProjet}"><input type="button" value="Edit All Project" class="btn btn-secondary" /></a>
+
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

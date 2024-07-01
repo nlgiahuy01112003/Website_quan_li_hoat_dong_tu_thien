@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb</title>
+
+    <link th:href="@{/css/styleAdmin.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Optima&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="banner">
+    <div class="speach">
+        <div th:replace="~{enTete :: enTete}"></div>
+
+        <ul class="tilesWrap">
+
+            <li th:each="user : ${listUsers}">
+                <img class="userImage" th:src="@{/images/pin_PNG64.png}" alt="Image pin"  style="width: 50px; height: auto;">
+                <h2 th:text="${user.id}"></h2>
+                <h3 th:text="${user.username}"></h3>
+                </p>
+                <a th:href="@{/UserEdit(username=${user.username})}"><button >Edit</button></a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+</body>
+</html>

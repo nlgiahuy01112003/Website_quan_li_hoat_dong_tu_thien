@@ -1,0 +1,322 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/kiwihug-3gifzboyZk0-unsplash.jpg);
+
+
+}
+
+.information {
+    display: flex;
+    align-items: center;
+    font-family: Optima, sans-serif;
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+    padding: 5px 0;
+    padding-left: 140px;
+    background-color: #0005;
+}
+
+.information .icon {
+    margin-left: auto;
+    padding-right: 30px;
+}
+
+.navbar {
+    width: 100%;
+    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+    z-index: 10;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62px;
+    z-index: 10;
+}
+
+.navbar .menu-items {
+    display: flex;
+}
+
+.navbar .nav-container li {
+    list-style: none;
+}
+
+.navbar .nav-container a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.7rem;
+}
+
+.navbar .nav-container a:hover{
+    font-weight: bolder;
+}
+
+.nav-container {
+    display: block;
+    position: relative;
+    height: 60px;
+
+}
+
+.nav-container .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.nav-container .hamburger-lines {
+    display: block;
+    height: 26px;
+    width: 32px;
+    position: absolute;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.nav-container .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: black;
+}
+
+.nav-container .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+
+}
+
+.nav-container .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+}
+
+.nav-container .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.navbar .menu-items {
+    padding-top: 120px;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    height: 100vh;
+    width: 100%;
+    transform: translate(-150%);
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+}
+
+.navbar .menu-items li {
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.logo {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 1.2rem;
+    color: #0e2431;
+}
+
+.nav-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+}
+
+.nav-container input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    transform: scaleY(0);
+}
+
+.banner {
+    width: 100%;
+    height: 100vh;
+    background-image: url(../images/kiwihug-3gifzboyZk0-unsplash.jpg);
+    background-color: #0005;
+}
+
+
+.login-form {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #0005;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #0056b3;
+}
+
+.tilesWrap {
+
+    padding: 0;
+    margin: 50px auto;
+    list-style: none;
+    text-align: center;
+    perspective: 1000px; /* Set the perspective (effect 3d ) */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+
+
+}
+
+.tilesWrap li {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3); /* Shadow for the box */
+    transition: transform 0.5s; /* Add transition for smooth effect */
+    transform: rotate(5deg);
+    display: inline-block;
+    width: 20%;
+    min-width: 50px;
+    max-width: 150px;
+    padding: 50px 10px 10px;
+    position: relative;
+    vertical-align: top;
+    margin: 10px;
+    font-family: 'helvetica', san-serif;
+    min-height: 15vh;
+    background-image: url(../images/kiwihug-zGZYQQVmXw0-unsplash.jpg);
+    /*border: 3px solid #252727;*/
+    text-align: left;
+    border-radius: 10px;
+}
+
+.tilesWrap li h2 {
+    font-size: 114px;
+    margin: 0;
+    position: absolute;
+    opacity: 0.2;
+    top: 50px;
+    right: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.tilesWrap li h3 {
+    font-size: 20px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.tilesWrap li p {
+    font-size: 16px;
+    line-height: 18px;
+    color: #b7b7b7;
+    margin-top: 5px;
+}
+
+.tilesWrap li button {
+    background: transparent;
+    border: 1px solid #FDBE33;
+    padding: 10px 20px;
+    color: #b7b7b7;
+    border-radius: 3px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-40px);
+    opacity: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.tilesWrap li button:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 120%;
+    background: transparent;
+    border: #FDBE33 3px solid;
+    top: 0;
+    opacity: 0;
+    left: -140px;
+    border-radius: 0 20px 20px 0;
+    z-index: -1;
+    transition: all 0s ease-in-out;
+}
+
+.tilesWrap li:hover button {
+    transform: translateY(5px);
+    opacity: 1;
+}
+
+.tilesWrap li button:hover {
+    color: #262a2b;
+}
+
+.tilesWrap li button:hover:before {
+    left: 0;
+    opacity: 1;
+}
+
+.tilesWrap li:hover h2 {
+    top: 0px;
+    opacity: 0.6;
+}
+.tilesWrap li:hover {
+    transform: rotateY(0deg) rotateX(5deg) translateZ(50px);
+
+}
+.tilesWrap li:hover .userImage {
+    transform: scale(1.3);
+    transition: all 0.3s ease-in-out;
+}
+
+

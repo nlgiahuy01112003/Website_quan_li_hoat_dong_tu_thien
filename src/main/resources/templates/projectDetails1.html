@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact us</title>
+    <link rel="stylesheet" th:href="@{/css/styleProjectDetails.css}">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var leftDiv = document.querySelector('.left');
+            var containerAfterStyle = document.createElement('style');
+            var backgroundImageURL = getComputedStyle(leftDiv).backgroundImage;
+
+            containerAfterStyle.innerHTML = '.container:after { background-image: ' + backgroundImageURL + '; }';
+            document.head.appendChild(containerAfterStyle);
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="contact-box">
+        <div class="left" th:style="'background-image: url('+ @{'../images/' + ${projectSelect.photoUrl}} +');'"></div>
+        <div class="right">
+
+            <h2 th:text="${projectSelect.title}"></h2>
+
+
+
+
+
+            <a th:href="@{/order/checkout}">
+                <button class="btn" type="button">Tham gia</button>
+            </a>
+
+            <a th:href="@{/Projet}">
+                <button class="btn" type="button">Go back</button>
+            </a>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

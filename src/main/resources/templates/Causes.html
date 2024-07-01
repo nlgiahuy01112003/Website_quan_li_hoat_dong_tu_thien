@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELPZ - Free Charity Website Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+    <div th:replace="enTete :: enTete"></div>
+
+    <!-- Service Start -->
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>What We Do?</p>
+                <h2>We believe that we can save more lifes with you</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-diet"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Healthy Food</h3>
+                            <p>Providing nutritious and balanced meals is essential for maintaining good health and well-being.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-water"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Pure Water</h3>
+                            <p>Access to clean and safe drinking water is fundamental for the health and sanitation of communities.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-healthcare"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Health Care</h3>
+                            <p>Ensuring access to quality healthcare services promotes well-being and prevents diseases.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-education"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Primary Education</h3>
+                            <p>Providing foundational education equips individuals with essential knowledge and skills for their future.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-home"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Residence Facilities</h3>
+                            <p>Safe and adequate housing is crucial for ensuring security, stability, and overall well-being.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="flaticon-social-care"></i>
+                        </div>
+                        <div class="service-text">
+                            <h3>Social Care</h3>
+                            <p>Supporting vulnerable members of society through social services fosters inclusivity and compassion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+    <div class="section-header text-center">
+        <p>Why we do it?</p>
+        <h2>"Together, we can make a difference and change lives for the better."</h2>
+    </div>
+
+    <div class="container2">
+    <div class="body-gallery">
+    <div class="gallery">
+        <input type="checkbox" >
+        <img src="/images/photo6.jpg" alt="photo humanitaire">
+        <img src="/images/kid.jpg" alt="photo humanitaire">
+        <img src="/images/photo1.jpg" alt="photo humanitaire">
+        <img src="/images/photo2.jpg" alt="photo humanitaire">
+        <img src="/images/lady.jpg" alt="photo humanitaire">
+        <img src="/images/shutterstock_306145868-min.jpg" alt="photo humanitaire">
+        <img src="/images/photo4.jpg" alt="photo humanitaire">
+        <img src="/images/madagascar.jpg" alt="photo humanitaire">
+    </div>
+
+    </div>
+    <div class="body-gallery2">
+        <p>
+
+
+            When we combine our strengths and work together towards a common goal, the possibilities become endless. Each individual brings their own touch, expertise, and passion, creating a collective dynamic that can have a significant impact.<br><br>
+
+            It's often easy to feel overwhelmed by the challenges around us, whether they are social, environmental, or even personal issues. However, it's important to remember that every small action counts and can make a big difference.<br><br>
+
+            Take humanitarian aid, for example. A single donation can provide food, clean water, or medical care to someone in need. But imagine the impact we could have if we joined forces. Not only could we help thousands, or even millions of people, but we could also create lasting and positive change in their lives.<br><br>
+
+            Similarly, in our daily lives, we all encounter opportunities to make a difference, whether it's reaching out to someone in need, supporting a cause we care about, or simply being a source of inspiration to others.<br><br>
+
+            So, let's commit to working together, sharing our resources, knowledge, and love. Together, we have the power to make a significant difference and change lives for the better. Each day is a new chance to make a positive contribution to the world around us. Let's embrace this opportunity and create a brighter future for all.</p>
+    </div>
+    </div>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
