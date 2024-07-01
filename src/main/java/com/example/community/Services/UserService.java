@@ -9,10 +9,11 @@ import java.util.List;
 public interface UserService {
     void saveUser(RegistrationDto registrationDto);
 
+    void updateUserDetails(UserEntity userEntity);
+
     List<UserEntity> findAllUsers();
 
     UserEntity findByEmail(String email);
     UserEntity findByUsername(String username);
-
 
 }

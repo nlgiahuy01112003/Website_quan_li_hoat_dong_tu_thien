@@ -11,6 +11,6 @@ public interface ProjetService {
     Projet saveProjet(ProjetDto projetDto);
     ProjetDto findProjetById(Long projetId);
     void updateProjet(ProjetDto projet);
-    void delete(Long ProjetId);
+    void delete(Long projetId);
     List<ProjetDto> searchProjet(String query);
 }
