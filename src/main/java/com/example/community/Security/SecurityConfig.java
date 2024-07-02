@@ -34,8 +34,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/register","/","/Contact","/Causes", "/register/save", "/login", "/css/**", "/js/**", "/images/**", "/lib/**").permitAll()
-                        .anyRequest().authenticated()
+                                .requestMatchers("/register", "/", "/Contact",
+                                        "/Causes", "/register/save", "/login", "/css/**",
+                                        "/js/**", "/images/**", "/lib/**", "/error")
+                                .permitAll()
+                                .requestMatchers("/Admin", "/AdminProjet","/AdminUtilisateur","/users/*","/ItemAdd","/ProjetEdit","/Upload")
+                                .hasAnyAuthority("ROLE_ADMIN") // Chỉ cho phép ADMIN truy cập.
+                                .requestMatchers("/api/**")
+                                .permitAll() // API mở cho mọi người dùng.
+                                .anyRequest().authenticated()
+//                        .requestMatchers("/Admin","/AdminProjet")
+//                        .hasAnyAuthority("ROLE_ADMIN") // Chỉ cho phép ADMIN truy cập.
+//                        .requestMatchers("/api/**")
+//                        .permitAll() // API mở cho mọi người dùng.
+//                        .anyRequest().authenticated() // Bất kỳ yêu cầu nào khác cần xác thực.
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
@@ -43,6 +55,9 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login")
                         .failureUrl("/login?error=true")
                         .permitAll()
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/403") // Trang báo lỗi khi truy cập không được phép.
                 )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

@@ -37,6 +37,15 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
     @Override
+    public void updateUserDetails(UserEntity userEntity) {
+        UserEntity existingUser = userRepository.findById(userEntity.getId()).orElseThrow(() -> new RuntimeException("User not found"));
+        existingUser.setUsername(userEntity.getUsername());
+        existingUser.setEmail(userEntity.getEmail());
+        existingUser.setRoles(userEntity.getRoles());
+        userRepository.save(existingUser);
+    }
+
+    @Override
     public List<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }

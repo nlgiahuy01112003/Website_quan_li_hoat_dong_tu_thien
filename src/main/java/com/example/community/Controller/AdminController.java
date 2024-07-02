@@ -65,8 +65,10 @@ public class AdminController {
                              BindingResult result,
                              Model model) {
         if (result.hasErrors()) {
-            return "useredit";
+            return "UserEdit";
         }
+        userService.updateUserDetails(userEntity);
         return "redirect:/AdminUtilisateur";
     }
+
 }
