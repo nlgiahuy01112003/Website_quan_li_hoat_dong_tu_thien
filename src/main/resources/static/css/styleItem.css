@@ -11,7 +11,7 @@ body{
 /*******************************/
 .navbar {
     width: 100%;
-    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+    background: white);
     z-index: 10;
 }
 
@@ -64,8 +64,8 @@ body{
 
 .nav-container .hamburger-lines {
     display: block;
-    height: 26px;
-    width: 32px;
+    height: 40px;
+    width: 50px;
     position: absolute;
     top: 17px;
     left: 20px;
@@ -81,7 +81,7 @@ body{
     height: 4px;
     width: 100%;
     border-radius: 10px;
-    background: black;
+    background: #ff9800;
 }
 
 .nav-container .hamburger-lines .line1 {
@@ -111,7 +111,7 @@ body{
     padding-left: 50px;
     transition: transform 0.5s ease-in-out;
     text-align: center;
-    background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+    background: white;
 }
 
 .navbar .menu-items li {
@@ -230,7 +230,7 @@ p {
             .left{
                 height:100%;
                 width: 50%;
-                background: url("../images/kiwihug-zGZYQQVmXw0-unsplash.jpg");
+                background: white;
                 position:relative;
                 float:left;
                 .details{

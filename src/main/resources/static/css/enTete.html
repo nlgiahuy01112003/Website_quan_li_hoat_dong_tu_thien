@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="enTete">
+    <nav>
+        <div class="navbar">
+            <div class="container nav-container">
+                <input class="checkbox" type="checkbox" name="" id=""/>
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="logo">
+                    <img th:src="@{/images/logo.png}" width="70px" height="70px" alt="logo entreprise">
+                </div>
+                <div class="menu-items">
+                    <!-- Display the welcome message and logout only if the user is authenticated -->
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <span style="color: black;" th:text="'WELCOME ' + ${#authentication.name.toUpperCase()}">Welcome USERNAME</span>
+
+                    </li>
+                    <li><span><a th:href="@{/}">HOME</a></span></li>
+                    <li><span><a th:href="@{/Causes}">ABOUT US</a></span></li>
+                    <li><span><a th:href="@{/Projet}">PROJECTS</a></span></li>
+                    <li><span><a th:href="@{/Item}">ITEM</a></span></li>
+
+                    <li><span><a th:href="@{/Contact}" target="_blank">CONTACT</a></span></li>
+                    <li><span><a th:href="'https://www.sandbox.paypal.com/donate/?hosted_button_id=UH2X9RPUFJEVG
+
+                    '" target="_blank">DONATE MONEY</a></span></li>
+
+                    <!-- Display LOGIN only if the user is not authenticated -->
+                    <li th:if="${not #authorization.expression('isAuthenticated()')}"><span><a
+                            th:href="@{/login}">LOGIN</a></span></li>
+                    <li><span><a th:href="@{/register}">REGISTER</a></span></li>
+
+                    <li th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a th:href="@{/logout}">LOGOUT</a>
+                    </li>
+
+
+                    <!-- Display ADMINISTRATEUR only if the user has the ROLE_ADMIN -->
+                    <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <span><a th:href="@{/Admin}" style="color: red;">ADMINISTRATEUR</a></span>
+                    </li>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb - Thành Công</title>
+    <link th:href="@{/css/styleConnexion.css}" rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+    <div th:replace="~{enTete :: enTete}"></div>
+
+    <section class="success-section">
+        <div class="success-message">
+            <h1>Đăng Ký Thành Công!</h1>
+            <p>Cảm ơn đã đăng ký. Bây giờ bạn là <a th:href="@{/login}"> có thể đăng nhập</a>.</p>
+        </div>
+    </section>
+</div>
+</body>
+</html>
