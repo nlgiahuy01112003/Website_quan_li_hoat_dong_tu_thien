@@ -12,7 +12,10 @@
     <div>
         <h2 class="text-center m-3">Edit Project</h2>
     </div>
-    <form th:action="@{/projets/{id}/edit(id=${projet.id})}" th:object="${projet}" method="post" enctype="multipart/form-data" style="max-width: 700px; margin: 0 auto; background: url('../images/kiwihug-zGZYQQVmXw0-unsplash.jpg');">
+    <form th:action="@{/projets/{id}/edit(id=${projet.id})}" th:object="${projet}"
+          method="post"
+          enctype="multipart/form-data"
+          style="max-width: 700px; margin: 0 auto; background:white ">
         <div class="border border-secondary rounded p-3">
             <input type="hidden" th:field="*{id}" />
             <div class="form-group row">

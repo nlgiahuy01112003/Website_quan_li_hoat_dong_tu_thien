@@ -15,7 +15,7 @@
                     <span class="line line3"></span>
                 </div>
                 <div class="logo">
-                    <img th:src="@{/images/logo.png}" width="50px" height="50px" alt="logo entreprise">
+                    <img th:src="@{/images/logo.png}" width="70px" height="70px" alt="logo entreprise">
                 </div>
                 <div class="menu-items">
                     <!-- Display the welcome message and logout only if the user is authenticated -->
@@ -25,23 +25,23 @@
                     </li>
                     <li><span><a th:href="@{/}">HOME</a></span></li>
                     <li><span><a th:href="@{/Causes}">ABOUT US</a></span></li>
-                    <li><span><a th:href="@{/Projet}">PROJETS</a></span></li>
+                    <li><span><a th:href="@{/Projet}">PROJECTS</a></span></li>
                     <li><span><a th:href="@{/Item}">ITEM</a></span></li>
-                    <li><span><a th:href="@{/register}">REGISTER</a></span></li>
+
+                    <li><span><a th:href="@{/Contact}" target="_blank">CONTACT</a></span></li>
+                    <li><span><a th:href="'https://www.sandbox.paypal.com/donate/?hosted_button_id=UH2X9RPUFJEVG
+
+                    '" target="_blank">DONATE MONEY</a></span></li>
 
                     <!-- Display LOGIN only if the user is not authenticated -->
                     <li th:if="${not #authorization.expression('isAuthenticated()')}"><span><a
                             th:href="@{/login}">LOGIN</a></span></li>
-
+                    <li><span><a th:href="@{/register}">REGISTER</a></span></li>
 
                     <li th:if="${#authorization.expression('isAuthenticated()')}">
                         <a th:href="@{/logout}">LOGOUT</a>
                     </li>
 
-                    <li><span><a th:href="@{/Contact}" target="_blank">CONTACT</a></span></li>
-                    <li><span><a th:href="'https://www.sandbox.paypal.com/donate/?hosted_button_id=UH2X9RPUFJEVG
-
-'" target="_blank">DONATE MONEY</a></span></li>
 
                     <!-- Display ADMINISTRATEUR only if the user has the ROLE_ADMIN -->
                     <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">

@@ -16,18 +16,18 @@
         <div class="forms">
             <div class="form-wrapper is-active">
                 <button type="button" class="switcher switcher-login">
-                    Register
+                    Đăng Ký
                     <span class="underline"></span>
                 </button>
                 <form class="form form-login" method="post" role="form" th:action="@{/register/save}" th:object="${user}">
                     <div th:if="${param.fail}" class="alert alert-success">
-                        Username or email already exists
+                        Tên hoặc Email đã tồn tại
                     </div>
                     <img th:src="@{/images/pin_PNG64.png}" alt="Image pin" style="width: 150px; height: auto; padding-left: 60px">
                     <fieldset>
-                        <legend>Please, enter your email, password and password confirmation for sign up.</legend>
+                        <legend>Vui lòng điền Email và Mật Khẩu để đăng nhập.</legend>
                         <div class="input-block">
-                            <label>Username</label>
+                            <label>Tên</label>
                             <input type="text" required th:field="*{username}">
                         </div>
                         <div class="input-block">
@@ -35,7 +35,7 @@
                             <input type="email" required th:field="*{email}">
                         </div>
                         <div class="input-block">
-                            <label >Password</label>
+                            <label >Mật Khẩu</label>
                             <input  type="password" required th:field="*{password}">
                         </div>
                     </fieldset>
@@ -44,7 +44,7 @@
             </div>
             <div class="form-wrapper">
                 <button type="button" class="switcher switcher-signup">
-                    NEXT PAGE
+                    TRANG SAU
                     <span class="underline"></span>
                 </button>
                 <form class="form form-signup" >
