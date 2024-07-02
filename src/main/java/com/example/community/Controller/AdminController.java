@@ -1,5 +1,8 @@
 package com.example.community.Controller;
 
+import com.example.community.Entity.Order;
+import com.example.community.Services.OrderService;
+import com.example.community.Services.impl.OrderServiceImpl;
 import com.example.community.Services.ProjetService;
 import com.example.community.Services.UserService;
 import com.example.community.dto.ProjetDto;
@@ -21,6 +24,9 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping("/Admin")
     public String admin() {
         return "Admin";
@@ -38,6 +44,13 @@ public class AdminController {
         List<UserEntity> listUsers = userService.findAllUsers();
         model.addAttribute("listUsers", listUsers);
         return "AdminUtilisateur";
+    }
+
+    @GetMapping("/AdminOrder")
+    public String showAllAdminOrder(Model model) {
+        List<Order> listOrders = orderService.findAllOrders();
+        model.addAttribute("listOrders", listOrders);
+        return "AdminOrder";
     }
     @GetMapping("/UserEdit")
     public String editUser(@RequestParam("username") String username, Model model) {
