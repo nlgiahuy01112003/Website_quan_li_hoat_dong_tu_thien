@@ -1,8 +1,11 @@
 package com.example.community.Controller;
 
+import com.example.community.Entity.Participation;
 import com.example.community.Entity.Projet;
 import com.example.community.Entity.UserEntity;
+import com.example.community.Mapper.ProjetMapper;
 import com.example.community.Security.SecurityUtil;
+import com.example.community.Services.ParticipationService;
 import com.example.community.Services.ProjetService;
 import com.example.community.Services.UserService;
 import com.example.community.dto.ProjetDto;
@@ -16,23 +19,22 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProjetController {
 
-    @Autowired
-    private ProjetService projetService;
-    @Autowired
-    private UserService userService;
+    private final ProjetService projetService;
+    private final UserService userService;
+    private final ParticipationService participationService;
 
     @Autowired
-    public ProjetController(ProjetService projetService, UserService userService){
+    public ProjetController(ProjetService projetService, UserService userService, ParticipationService participationService) {
         this.projetService = projetService;
         this.userService = userService;
+        this.participationService = participationService;
     }
-
-
 
     @GetMapping("/Upload")
     public String showUpload(Model model) {
@@ -41,43 +43,29 @@ public class ProjetController {
     }
 
     @PostMapping("/projets/save")
-    public String ajouterProjet(@Valid @ModelAttribute("projetadd") ProjetDto projetDto, BindingResult result,
-                                @RequestParam("fileImage") MultipartFile multipartFile, Model model) throws IOException {
-
-
+    public String ajouterProjet(@Valid @ModelAttribute("projetadd") ProjetDto projetDto, BindingResult result, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
         if (!multipartFile.isEmpty()) {
-            // Ensure that the directory name is fixed
             String directoryName = "images";
-
-            // Create directory if not exists
             File directory = new File("src/main/resources/static/" + directoryName);
             if (!directory.exists()) {
                 directory.mkdirs();
             }
 
-            // Get the original file name
             String originalFileName = multipartFile.getOriginalFilename();
-
-            // Construct the file path
             String filePath = directory.getAbsolutePath() + File.separator + originalFileName;
-
-            // Save the file to the directory
             File destFile = new File(filePath);
             multipartFile.transferTo(destFile);
             projetDto.setPhotoUrl(originalFileName);
-
-            // Print out the directory path for debugging (to see if it works well)
-            System.out.println("Directory path: " + directory.getAbsolutePath());
-            System.out.println("File path: " + filePath);
         }
 
         projetDto.setAmount("0");
-        projetService.saveProjet(projetDto);
-
-        // Proceed with redirection to HTML page project
+        String username = SecurityUtil.getSessionUser();
+        UserEntity user = userService.findByUsername(username);
+        Projet projet = ProjetMapper.mapToProjet(projetDto);
+        projet.setCreatedBy(user);
+        projetService.saveProjet(projet);
         return "redirect:/Projet";
     }
-
 
     @GetMapping("/ProjectDetails")
     public String projectDetails(@RequestParam("id") Long projectId, Model model) {
@@ -99,29 +87,24 @@ public class ProjetController {
         model.addAttribute("projet", project);
         return "ProjetEdit";
     }
+
     @PostMapping("/projets/{id}/delete")
     public String deleteProjet(@PathVariable("id") Long projectId) {
-        projetService.delete(projectId);
+        projetService.deleteProjet(projectId);
         return "redirect:/Projet";
     }
-
 
     @PostMapping("/projets/{id}/edit")
-    public String updateProjet(@PathVariable("id") Long projectId,
-                               @Valid @ModelAttribute("projet") ProjetDto projetDto,
-                               BindingResult result,
-                               Model model) {
-
-
+    public String updateProjet(@PathVariable("id") Long projectId, @Valid @ModelAttribute("projet") ProjetDto projetDto, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "ProjetEdit";
+        }
         ProjetDto existingProjet = projetService.findProjetById(projectId);
         projetDto.setPhotoUrl(existingProjet.getPhotoUrl());
-        projetService.saveProjet(projetDto);
         projetDto.setId(projectId); // Ensure the ID is set for update
-        projetService.saveProjet(projetDto);
-
+        projetService.updateProjet(projetDto);
         return "redirect:/Projet";
     }
-
 
     @GetMapping("/Projet")
     public String showProjet(Model model) {
@@ -136,5 +119,64 @@ public class ProjetController {
         return "Projet";
     }
 
+    @GetMapping("/participate")
+    public String showParticipationForm(@RequestParam("projectId") Long projectId, Model model) {
+        ProjetDto project = projetService.findProjetById(projectId);
+        if (Double.parseDouble(project.getAmount()) >= Double.parseDouble(project.getTotalAmount())) {
+            model.addAttribute("error", "This project has already reached its funding goal.");
+            return "redirect:/ProjectDetails?id=" + projectId;
+        }
+        model.addAttribute("project", project);
+        model.addAttribute("participation", new Participation());
+        return "participate";
+    }
 
+    @PostMapping("/participate")
+    public String participate(@RequestParam("projectId") Long projectId,
+                              @RequestParam("amount") double amount,
+                              @RequestParam("comment") String comment,
+                              @RequestParam("customerName") String customerName,
+                              @RequestParam("phone") String phone,
+                              @RequestParam("address") String address,
+                              @RequestParam("email") String email,
+                              Model model) {
+        String username = SecurityUtil.getSessionUser();
+        UserEntity user = userService.findByUsername(username);
+        ProjetDto projetDto = projetService.findProjetById(projectId);
+
+        if (participationService.hasParticipated(user, projectId)) {
+            model.addAttribute("error", "You have already participated in this project.");
+            return "redirect:/ProjectDetails?id=" + projectId;
+        }
+
+        double newAmount = Double.parseDouble(projetDto.getAmount()) + amount;
+        if (newAmount > Double.parseDouble(projetDto.getTotalAmount())) {
+            model.addAttribute("error", "The total amount exceeds the project goal.");
+            return "redirect:/ProjectDetails?id=" + projectId;
+        }
+
+        projetDto.setAmount(String.valueOf(newAmount));
+        Projet projet = ProjetMapper.mapToProjet(projetDto);
+
+        Participation participation = new Participation();
+        participation.setUser(user);
+        participation.setProjet(projet);
+        participation.setAmount(amount);
+        participation.setComment(comment);
+        participation.setCustomerName(customerName);
+        participation.setPhone(phone);
+        participation.setAddress(address);
+        participation.setEmail(email);
+
+        if (projet.getParticipations() == null) {
+            projet.setParticipations(new ArrayList<>());
+        }
+
+        projet.getParticipations().add(participation);
+
+        projetService.updateProjet(projet);
+        participationService.saveParticipation(participation);
+
+        return "redirect:/Projet";
+    }
 }

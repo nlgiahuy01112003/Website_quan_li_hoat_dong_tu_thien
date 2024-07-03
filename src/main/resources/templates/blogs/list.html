@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb</title>
+    <link th:href="@{/css/styleItem.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://code.jquery.com/jquery-3.6.0.min.js" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Blog List</h1>
+    <a class="btn btn-primary mb-3" href="/blogs/new" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Create New Blog</a>
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Image</th>
+            <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="blog : ${blogs}">
+            <td th:text="${blog.title}">Blog Title</td>
+            <td th:text="${blog.content}">Blog Content</td>
+            <td><img th:src="${blog.imageUrl}" alt="Blog Image" style="width: 500px; height: auto;"></td>
+            <td>
+
+<!--                <a th:href="@{/participate(projectId=${projectSelect.id})}">-->
+                <a th:href="@{/blogs/edit/{id}(id=${blog.id})}" class="btn btn-warning" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Edit</a>
+                <a th:href="@{/blogs/delete/{id}(id=${blog.id})}" class="btn btn-danger" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

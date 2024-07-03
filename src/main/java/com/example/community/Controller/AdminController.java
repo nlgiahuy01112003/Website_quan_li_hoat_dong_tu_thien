@@ -1,9 +1,11 @@
 package com.example.community.Controller;
 
+import com.example.community.Services.ParticipationService;
 import com.example.community.Services.ProjetService;
 import com.example.community.Services.UserService;
 import com.example.community.dto.ProjetDto;
 import com.example.community.Entity.UserEntity;
+import com.example.community.Entity.Participation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,17 @@ import java.util.List;
 
 @Controller
 public class AdminController {
-    @Autowired
-    private ProjetService projetService;
+
+    private final ProjetService projetService;
+    private final UserService userService;
+    private final ParticipationService participationService;
 
     @Autowired
-    private UserService userService;
+    public AdminController(ProjetService projetService, UserService userService, ParticipationService participationService) {
+        this.projetService = projetService;
+        this.userService = userService;
+        this.participationService = participationService;
+    }
 
     @GetMapping("/Admin")
     public String admin() {
@@ -39,6 +47,7 @@ public class AdminController {
         model.addAttribute("listUsers", listUsers);
         return "AdminUtilisateur";
     }
+
     @GetMapping("/UserEdit")
     public String editUser(@RequestParam("username") String username, Model model) {
         UserEntity user = userService.findByUsername(username);
@@ -49,8 +58,7 @@ public class AdminController {
     @PostMapping("/users/{username}/edit")
     public String updateUser(@PathVariable("username") String username,
                              @Valid @ModelAttribute("user") UserEntity userEntity,
-                             BindingResult result,
-                             Model model) {
+                             BindingResult result) {
         if (result.hasErrors()) {
             return "UserEdit";
         }
@@ -58,4 +66,10 @@ public class AdminController {
         return "redirect:/AdminUtilisateur";
     }
 
+    @GetMapping("/AdminProjet/{id}/participations")
+    public String viewParticipations(@PathVariable("id") Long projectId, Model model) {
+        List<Participation> participations = participationService.findByProjetId(projectId);
+        model.addAttribute("participations", participations);
+        return "AdminParticipations";
+    }
 }

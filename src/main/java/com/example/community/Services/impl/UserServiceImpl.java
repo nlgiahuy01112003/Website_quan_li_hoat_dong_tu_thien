@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
+
     @Override
     public void updateUserDetails(UserEntity userEntity) {
         UserEntity existingUser = userRepository.findById(userEntity.getId()).orElseThrow(() -> new RuntimeException("User not found"));
@@ -49,6 +50,7 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
+
     @Override
     public UserEntity findByEmail(String email) {
         return userRepository.findByEmail(email);

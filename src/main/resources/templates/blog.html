@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProjetWeb</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link th:href="@{/css/styleItem.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://code.jquery.com/jquery-3.6.0.min.js" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Bebas+Neue&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div class="banner">
+    <div th:replace="~{enTete :: enTete}"></div>
+    <div class="container">
+        <h1 style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; padding-top: 40px; text-align: center;">
+           BLOGS PAGE</h1>
+        <div class="custom-container">
+            <!-- Your existing content -->
+            <table class="table table-striped">
+                <tbody>
+                <tr th:each="blog : ${blogs}">
+                    <td th:text="${blog.title}">Blog Title</td>
+                    <td th:text="${blog.content}">Blog Content</td>
+                    <td><img th:src="${blog.imageUrl}" alt="Blog Image" style="width: 100px; height: auto;"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="button-pad">
+                <a href="/blogs" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <button class="button-30" role="button">Manage Blogs</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

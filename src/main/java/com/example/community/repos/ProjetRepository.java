@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjetRepository extends JpaRepository<Projet, Long> {
-    Optional<Projet> findByTitle(String url);
+    Optional<Projet> findByTitle(String title);
+
     @Query("SELECT c from Projet c WHERE c.title LIKE CONCAT('%', :query, '%')")
     List<Projet> searchProjets(String query);
 }

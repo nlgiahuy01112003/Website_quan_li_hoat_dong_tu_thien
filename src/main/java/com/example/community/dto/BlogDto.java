@@ -1,6 +1,7 @@
 package com.example.community.dto;
 
 import com.example.community.Entity.UserEntity;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,14 +13,20 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProjetDto {
+public class BlogDto {
     private Long id;
+
+    @NotEmpty(message = "Title should not be empty")
     private String title;
-    private String photoUrl;
+
+    @NotEmpty(message = "Content should not be empty")
     private String content;
-    private String amount;
-    private String totalAmount;
-    private UserEntity createdBy;
+
+    private String imageUrl; // New field for image URL
+
     private LocalDateTime createdOn;
+
     private LocalDateTime updatedOn;
+
+    private UserEntity createdBy; // New field for creator
 }

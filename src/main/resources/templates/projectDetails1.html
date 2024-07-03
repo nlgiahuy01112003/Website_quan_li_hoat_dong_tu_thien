@@ -24,19 +24,12 @@
 
             <h2 th:text="${projectSelect.title}"></h2>
 
-
-
-
-
-            <a th:href="@{/order/checkout}">
+            <a th:href="@{/participate(projectId=${projectSelect.id})}">
                 <button class="btn" type="button">Tham gia</button>
             </a>
-
             <a th:href="@{/Projet}">
                 <button class="btn" type="button">Go back</button>
             </a>
-
-
         </div>
     </div>
 </div>

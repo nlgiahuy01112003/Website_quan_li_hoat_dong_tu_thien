@@ -1,6 +1,5 @@
 package com.example.community.repos;
 
-
 import com.example.community.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

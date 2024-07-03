@@ -30,14 +30,12 @@ public class AuthController {
     }
     @GetMapping("/ItemAdd")
     public String ItemAdd() {
-
         return "ItemAdd";
     }
 
-
     @GetMapping("/Item")
     public String Item(){
-        return "Item";
+        return "blog";
     }
     @GetMapping("/Contact")
     public String Contact(){
@@ -54,7 +52,6 @@ public class AuthController {
     }
     @GetMapping("/login")
     public String loginPage() {
-
         return "login";
     }
     @GetMapping("/register")
@@ -65,7 +62,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/save")
-    public String register(@Valid @ModelAttribute("user")RegistrationDto user,
+    public String register(@Valid @ModelAttribute("user") RegistrationDto user,
                            BindingResult result, Model model) {
         UserEntity existingUserEmail = userService.findByEmail(user.getEmail());
         if(existingUserEmail != null && existingUserEmail.getEmail() != null && !existingUserEmail.getEmail().isEmpty()) {
@@ -76,7 +73,6 @@ public class AuthController {
             return "redirect:/register?fail";
         }
         if(result.hasErrors()) {
-
             model.addAttribute("user", user);
             return "register";
         }
