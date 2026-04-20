@@ -4,6 +4,7 @@ import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Campaign;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Event;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class EventService {
     public List<Event> findAll() {
         return eventRepository.findAll();
     }
-    public void save(Event event) {
+    public void save(@NonNull Event event) {
         eventRepository.save(event);
     }
 }

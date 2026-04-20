@@ -4,6 +4,7 @@ import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Campaign;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Sponsorship;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.repository.SponsorshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,11 @@ public class SponsorshipService {
         return sponsorshipRepository.findByCampaign(campaign);
     }
 
-    public void save(Sponsorship sponsorship) {
+    public List<Sponsorship> findAll() {
+        return sponsorshipRepository.findAll();
+    }
+
+    public void save(@NonNull Sponsorship sponsorship) {
         sponsorshipRepository.save(sponsorship);
     }
 }

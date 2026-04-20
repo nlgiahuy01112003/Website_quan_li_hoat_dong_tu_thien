@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +24,14 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public void save(User user) {
+    public User findByVerificationCode(String code) {
+        return userRepository.findByVerificationCode(code);
+    }
+
+    public void save(@NonNull User user) {
+        if (user.getVerificationCode() == null) {
+            user.setVerificationCode(java.util.UUID.randomUUID().toString());
+        }
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         user.setEnabled(false); // Disable account until email verification
         userRepository.save(user);
@@ -31,7 +39,7 @@ public class UserService {
     }
 
     @SneakyThrows
-    private void sendVerificationEmail(User user) {
+    private void sendVerificationEmail(@NonNull User user) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 

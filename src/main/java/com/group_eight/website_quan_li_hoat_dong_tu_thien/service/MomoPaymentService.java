@@ -8,6 +8,11 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
 @Service
 public class MomoPaymentService {
@@ -23,6 +28,8 @@ public class MomoPaymentService {
 
     @Value("${momo.endpoint}")
     private String endpoint;
+
+    private final RestTemplate restTemplate = new RestTemplate();
 
     public String createPaymentRequest(double amount, String orderId, String orderInfo, String returnUrl) throws Exception {
         Map<String, String> params = new HashMap<>();
@@ -52,8 +59,18 @@ public class MomoPaymentService {
         String signature = Base64.getEncoder().encodeToString(sha256_HMAC.doFinal(rawData.getBytes()));
         params.put("signature", signature);
 
-        // TODO: Send request to Momo endpoint and handle response
-        // Example: return HttpClient.post(endpoint, params);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Map<String, String>> request = new HttpEntity<>(params, headers);
+
+        try {
+            ResponseEntity<Map> response = restTemplate.postForEntity(endpoint, request, Map.class);
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                return (String) response.getBody().get("payUrl");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return null;
     }

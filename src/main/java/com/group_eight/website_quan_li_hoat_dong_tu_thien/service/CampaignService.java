@@ -2,6 +2,7 @@ package com.group_eight.website_quan_li_hoat_dong_tu_thien.service;
 
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Campaign;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.repository.CampaignRepository;
+import org.springframework.lang.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class CampaignService {
         return campaignRepository.findByStatus(status);
     }
 
-    public void save(Campaign campaign) {
+    public void save(@NonNull Campaign campaign) {
         campaignRepository.save(campaign);
     }
 }

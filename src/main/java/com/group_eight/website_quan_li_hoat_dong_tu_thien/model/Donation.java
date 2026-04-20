@@ -28,6 +28,10 @@ public class Donation {
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
+    @ManyToOne
+    @JoinColumn(name = "donation_card_id")
+    private DonationCard donationCard;
+
     @OneToMany(mappedBy = "donation")
     private List<DonationDetail> donationDetails;
 }

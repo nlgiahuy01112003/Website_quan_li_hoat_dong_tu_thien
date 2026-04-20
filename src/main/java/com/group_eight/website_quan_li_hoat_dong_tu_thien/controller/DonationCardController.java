@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
 
 @Controller
 @RequestMapping("/admin/donation-cards")
@@ -31,20 +32,20 @@ public class DonationCardController {
     }
 
     @PostMapping
-    public String saveDonationCard(@ModelAttribute DonationCard donationCard) {
+    public String saveDonationCard(@NonNull @ModelAttribute DonationCard donationCard) {
         donationCardService.save(donationCard);
         return "redirect:/admin/donation-cards";
     }
 
     @GetMapping("/edit/{id}")
-    public String editDonationCard(@PathVariable Long id, Model model) {
+    public String editDonationCard(@NonNull @PathVariable Long id, Model model) {
         model.addAttribute("donationCard", donationCardService.findById(id));
         model.addAttribute("campaigns", campaignService.findAll());
         return "admin/donation_card_form";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteDonationCard(@PathVariable Long id) {
+    public String deleteDonationCard(@NonNull @PathVariable Long id) {
         donationCardService.deleteById(id);
         return "redirect:/admin/donation-cards";
     }

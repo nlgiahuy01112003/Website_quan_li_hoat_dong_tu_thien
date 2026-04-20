@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 
@@ -33,13 +34,13 @@ public class UserDonationCardController {
     }
 
     @GetMapping("/{id}")
-    public String viewDonationCard(@PathVariable Long id, Model model) {
+    public String viewDonationCard(@NonNull @PathVariable Long id, Model model) {
         model.addAttribute("donationCard", donationCardService.findById(id));
         return "user/donation_card_detail";
     }
 
     @PostMapping("/donate")
-    public String donate(@RequestParam Long cardId, @RequestParam Double amount, Authentication authentication) {
+    public String donate(@NonNull @RequestParam Long cardId, @RequestParam Double amount, Authentication authentication) {
         DonationCard donationCard = donationCardService.findById(cardId);
         User user = userService.findByUsername(authentication.getName());
 

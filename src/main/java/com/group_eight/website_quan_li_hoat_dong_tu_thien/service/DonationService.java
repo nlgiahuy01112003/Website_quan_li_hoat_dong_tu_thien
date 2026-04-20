@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,14 +25,18 @@ public class DonationService {
         return donationRepository.findByCampaign(campaign);
     }
 
+    public List<Donation> findAll() {
+        return donationRepository.findAll();
+    }
 
-    public void save(Donation donation) {
+
+    public void save(@NonNull Donation donation) {
         donationRepository.save(donation);
         sendThankYouEmail(donation);
     }
 
     @SneakyThrows
-    private void sendThankYouEmail(Donation donation) {
+    private void sendThankYouEmail(@NonNull Donation donation) {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 

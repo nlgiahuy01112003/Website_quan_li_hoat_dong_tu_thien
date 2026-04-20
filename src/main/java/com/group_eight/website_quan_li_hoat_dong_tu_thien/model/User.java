@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.springframework.lang.NonNull;
 import java.util.List;
 
 @Getter
@@ -16,11 +17,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NonNull
     private String username;
     private String password;
+    @NonNull
     private String email;
     private String role;
     private boolean enabled;
+    private String verificationCode;
 
     @OneToMany(mappedBy = "user")
     private List<Donation> donations;

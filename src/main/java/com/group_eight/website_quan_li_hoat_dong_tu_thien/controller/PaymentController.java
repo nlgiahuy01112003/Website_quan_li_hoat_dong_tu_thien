@@ -23,8 +23,15 @@ public class PaymentController {
     }
 
     @GetMapping("/return")
-    public String paymentReturn() {
-        // TODO: Handle payment return
+    public String paymentReturn(@RequestParam(required = false) String errorCode,
+                                @RequestParam(required = false) String orderId,
+                                @RequestParam(required = false) String requestId,
+                                org.springframework.ui.Model model) {
+        if ("0".equals(errorCode)) {
+            model.addAttribute("message", "Payment Successful! Order ID: " + orderId);
+        } else {
+            model.addAttribute("message", "Payment Failed or Cancelled. Error Code: " + errorCode);
+        }
         return "payment_return";
     }
 }

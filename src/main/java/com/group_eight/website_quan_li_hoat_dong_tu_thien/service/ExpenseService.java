@@ -4,6 +4,7 @@ import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Campaign;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.Expense;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,11 @@ public class ExpenseService {
         return expenseRepository.findByCampaign(campaign);
     }
 
-    public void save(Expense expense) {
+    public List<Expense> findAll() {
+        return expenseRepository.findAll();
+    }
+
+    public void save(@NonNull Expense expense) {
         expenseRepository.save(expense);
     }
 }

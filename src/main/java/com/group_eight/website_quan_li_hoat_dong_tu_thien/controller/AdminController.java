@@ -3,6 +3,7 @@ package com.group_eight.website_quan_li_hoat_dong_tu_thien.controller;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.model.*;
 import com.group_eight.website_quan_li_hoat_dong_tu_thien.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class AdminController {
     }
 
     @PostMapping("/campaigns")
-    public String saveCampaign(@ModelAttribute Campaign campaign) {
+    public String saveCampaign(@ModelAttribute @NonNull Campaign campaign) {
         campaignService.save(campaign);
         return "redirect:/admin/campaigns";
     }
@@ -57,7 +58,7 @@ public class AdminController {
     }
 
     @PostMapping("/events")
-    public String saveEvent(@ModelAttribute Event event) {
+    public String saveEvent(@ModelAttribute @NonNull Event event) {
         eventService.save(event);
         return "redirect:/admin/events";
     }

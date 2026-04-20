@@ -15,8 +15,7 @@ public class HomeController {
     @Autowired
     private CampaignService campaignService;
 
-    @Autowired
-    private EventService eventService;
+
 
     @GetMapping("/home")
     public String home(Model model) {
