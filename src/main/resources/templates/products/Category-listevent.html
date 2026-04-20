@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<section layout:fragment="content">
+    <div th:each="entry : ${categoryEvents}">
+        <div class="panel panel-info panel-prod">
+            <div class="panel-heading panel-heading-prod">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span th:text="${entry.key.name}">Category Name</span>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4" th:each="event : ${entry.value}">
+                        <div class="thumbnail">
+                            <img th:src="@{'/root/images/events/' +${event.img1}}" class="img-rounded"
+                                 th:alt="${event.name}">
+                            <div class="caption">
+                                <h4 th:text="${event.name}">Event Name</h4>
+                                <p th:text="'Giá: ' + ${event.price} + 'VNĐ'">Event Price</p>
+                                <p>
+                                    <a th:href="@{'/events/detail/' +${event.link}}" class="btn btn-primary">
+                                        <i class="fa fa-info-circle"></i> Chi tiết sản phẩm
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <p class="more-prod">
+                    <a th:href="@{'/events/' + ${entry.key.link}}"
+                       th:text="'Xem thêm ' + ${entry.key.name}">
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+</html>

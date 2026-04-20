@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="footer" th:fragment="footer">
+    <div class="container container-footer">
+        <div class="col-md-8">
+            <h4>PET'S STORE - Cửa hàng dành cho thú cưng</h4>
+            <p>Địa chỉ: HUTECH Thuduc Campus - Khu CNC, Phường Hiệp Phú, Tp. Thủ
+                Đức, Tp. Hồ Chí Minh</p>
+            <p>SĐT: <a class="info" th:href="@{'tel:0868895261'}">086.8895.261</a>
+                (.....)</p>
+            <p>Email: <a class="info"
+                         th:href="@{'mailto:12345@gmail.com'}">12345@gmail.com</a></p>
+        </div>
+        <div class="col-md-4">
+            <img th:src="@{www/images/banner-1.png}" alt="logo"/>
+            <p></p>
+            <p>Số lượng truy cập hiện tại: 100</p>
+        </div>
+    </div>
+</div>
+</html>
