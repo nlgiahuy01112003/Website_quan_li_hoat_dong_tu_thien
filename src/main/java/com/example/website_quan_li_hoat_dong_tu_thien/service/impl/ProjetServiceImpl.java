@@ -1,13 +1,13 @@
-package com.example.community.Services.impl;
+package com.example.website_quan_li_hoat_dong_tu_thien.service.impl;
 
-import com.example.community.Entity.Projet;
-import com.example.community.Entity.UserEntity;
-import com.example.community.Mapper.ProjetMapper;
-import com.example.community.Security.SecurityUtil;
-import com.example.community.Services.ProjetService;
-import com.example.community.dto.ProjetDto;
-import com.example.community.repos.ProjetRepository;
-import com.example.community.repos.UserRepository;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.Projet;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.UserEntity; 
+import com.example.website_quan_li_hoat_dong_tu_thien.mapper.ProjetMapper;
+import com.example.website_quan_li_hoat_dong_tu_thien.security.SecurityUtil;
+import com.example.website_quan_li_hoat_dong_tu_thien.service.ProjetService;
+import com.example.website_quan_li_hoat_dong_tu_thien.dto.ProjetDto;
+import com.example.website_quan_li_hoat_dong_tu_thien.repository.ProjetRepository;
+import com.example.website_quan_li_hoat_dong_tu_thien.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +46,9 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public ProjetDto findProjetById(Long projetId) {
+        if (projetId == null) {
+            throw new IllegalArgumentException("Project ID cannot be null");
+        }
         Projet projet = projetRepository.findById(projetId).orElseThrow(() -> new RuntimeException("Project not found"));
         return ProjetMapper.mapToProjetDto(projet);
     }
@@ -62,6 +65,9 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public void delete(Long projetId) {
+        if (projetId == null) {
+            throw new IllegalArgumentException("Project ID cannot be null");
+        }
         projetRepository.deleteById(projetId);
     }
 

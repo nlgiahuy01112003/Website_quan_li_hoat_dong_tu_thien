@@ -3,8 +3,6 @@ package com.example.website_quan_li_hoat_dong_tu_thien.service;
 import com.example.website_quan_li_hoat_dong_tu_thien.model.Category;
 import com.example.website_quan_li_hoat_dong_tu_thien.model.Event;
 import com.example.website_quan_li_hoat_dong_tu_thien.repository.EventRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +13,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class EventService {
     private final EventRepository eventRepository;
+
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
 
     public List<Event> findAll() {
         return eventRepository.findAll();
@@ -68,6 +68,9 @@ public class EventService {
     }
 
     public Event addEvent(Event event) {
+        if (event == null) {
+            throw new IllegalArgumentException("Event cannot be null");
+        }
         return eventRepository.save(event);
     }
 

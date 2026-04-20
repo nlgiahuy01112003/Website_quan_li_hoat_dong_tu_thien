@@ -1,7 +1,5 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,12 +13,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class SlideService {
-    @Autowired
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(SlideService.class);
     private final SlideRepository slideRepository;
+
+    @Autowired
+    public SlideService(SlideRepository slideRepository) {
+        this.slideRepository = slideRepository;
+    }
 
     // Get all slides
     public List<Slide> findAll() {
@@ -28,7 +29,7 @@ public class SlideService {
     }
 
     // Get slide by ID
-    public ResponseEntity<Optional<Slide>> getSlideById(Long id) {
+    public ResponseEntity<Optional<Slide>> getSlideById(Integer id) {
         if (id == null) {
             log.warn("Slide ID is null.");
             return ResponseEntity.badRequest().build();
@@ -45,7 +46,7 @@ public class SlideService {
 
     // Add new slide
     public ResponseEntity<Slide> addSlide(@NotNull Slide slide) {
-        if (slide.getId() != 0 && slideRepository.existsById((long) slide.getId())) {
+        if (slide.getId() != 0 && slideRepository.existsById(slide.getId())) {
             log.warn("Slide with ID {} already exists.", slide.getId());
             return ResponseEntity.status(409).build(); // Conflict
         } else {
@@ -62,7 +63,7 @@ public class SlideService {
             return ResponseEntity.badRequest().build(); // Bad Request
         }
 
-        Slide existingSlide = slideRepository.findById((long) slide.getId())
+        Slide existingSlide = slideRepository.findById(slide.getId())
                 .orElseThrow(() -> new IllegalStateException(
                         "Slide with ID " + slide.getId() + " does not exist."));
         existingSlide.setTitle(slide.getTitle());
@@ -77,7 +78,7 @@ public class SlideService {
     }
 
     // Delete slide by ID
-    public ResponseEntity<Void> deleteSlideById(Long id) {
+    public ResponseEntity<Void> deleteSlideById(Integer id) {
         if (id == null) {
             log.warn("Slide ID is null.");
             return ResponseEntity.badRequest().build();

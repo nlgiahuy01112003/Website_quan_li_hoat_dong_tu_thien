@@ -1,12 +1,10 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-@Data
+
 @Entity
 @Table(name = "order_event_details")
-@RequiredArgsConstructor
 public class OrderEventDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +21,15 @@ public class OrderEventDetail {
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+
+    public OrderEventDetail() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public OrderEvent getOrder() { return order; }
+    public void setOrder(OrderEvent order) { this.order = order; }
+    public Event getEvent() { return event; }
+    public void setEvent(Event event) { this.event = event; }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 }

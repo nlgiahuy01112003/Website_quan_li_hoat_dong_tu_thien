@@ -1,13 +1,11 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.controller;
 
-import com.example.website_quan_li_hoat_dong_tu_thien.model.Menu;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.example.website_quan_li_hoat_dong_tu_thien.service.CategoryService;
 import com.example.website_quan_li_hoat_dong_tu_thien.model.Category;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +16,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/categories")
 public class CategoryController {
-    @Autowired
     private final CategoryService categoryService;
+
+    @Autowired
+    public CategoryController(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
@@ -47,9 +48,10 @@ public class CategoryController {
     }
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        ResponseEntity<Optional<Category>> responseEntity = categoryService.getCategoryById(id);
-        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody().isPresent()) {
-            Category category = responseEntity.getBody().get();
+        ResponseEntity<Optional<Category>> response = categoryService.getCategoryById(id);
+        Optional<Category> categoryOpt = response.getBody();
+        if (response.getStatusCode().is2xxSuccessful() && categoryOpt != null && categoryOpt.isPresent()) {
+            Category category = categoryOpt.get();
             model.addAttribute("category", category);
             return "/categories/update-category";
         } else {
@@ -72,8 +74,9 @@ public class CategoryController {
     // GET request for deleting category
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable("id") Integer id, Model model) {
-        ResponseEntity<Optional<Category>> responseEntity = categoryService.getCategoryById(id);
-        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody().isPresent()) {
+        ResponseEntity<Optional<Category>> response = categoryService.getCategoryById(id);
+        Optional<Category> categoryOpt = response.getBody();
+        if (response.getStatusCode().is2xxSuccessful() && categoryOpt != null && categoryOpt.isPresent()) {
             categoryService.deleteCategoryById(id);
             model.addAttribute("categories", categoryService.findAll());
             return "redirect:/categories";

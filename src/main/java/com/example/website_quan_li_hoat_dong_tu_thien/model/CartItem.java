@@ -1,11 +1,9 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-@Data
+
 @Entity
 @Table(name = "CartItem")
-@RequiredArgsConstructor
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +17,17 @@ public class CartItem {
     @Column(name = "QUANTITY", nullable = false)
     private int quantity;
 
+    public CartItem() {}
+
     public CartItem(Event event, int quantity) {
         this.event = event;
         this.quantity = quantity;
     }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public Event getEvent() { return event; }
+    public void setEvent(Event event) { this.event = event; }
+    public int getQuantity() { return quantity; }
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 }

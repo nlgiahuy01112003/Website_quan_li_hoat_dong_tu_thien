@@ -1,7 +1,5 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.service;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,12 +13,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class BlogService {
-    @Autowired
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(BlogService.class);
     private final BlogRepository blogRepository;
+
+    @Autowired
+    public BlogService(BlogRepository blogRepository) {
+        this.blogRepository = blogRepository;
+    }
 
     // Get all blogs
     public List<Blog> findAll() {
@@ -28,7 +29,7 @@ public class BlogService {
     }
 
     // Get blog by ID
-    public ResponseEntity<Optional<Blog>> getBlogById(Long id) {
+    public ResponseEntity<Optional<Blog>> getBlogById(Integer id) {
         if (id == null) {
             log.warn("Blog ID is null.");
             return ResponseEntity.badRequest().build();
@@ -45,7 +46,7 @@ public class BlogService {
 
     // Add new blog
     public ResponseEntity<Blog> addBlog(@NotNull Blog blog) {
-        if (blog.getId() != 0 && blogRepository.existsById((long) blog.getId())) {
+        if (blog.getId() != 0 && blogRepository.existsById(blog.getId())) {
             log.warn("Blog with ID {} already exists.", blog.getId());
             return ResponseEntity.status(409).build(); // Conflict
         } else {
@@ -62,7 +63,7 @@ public class BlogService {
             return ResponseEntity.badRequest().build(); // Bad Request
         }
 
-        Blog existingBlog = blogRepository.findById((long) blog.getId())
+        Blog existingBlog = blogRepository.findById(blog.getId())
                 .orElseThrow(() -> new IllegalStateException(
                         "Blog with ID " + blog.getId() + " does not exist."));
         existingBlog.setTitle(blog.getTitle());
@@ -79,7 +80,7 @@ public class BlogService {
     }
 
     // Delete blog by ID
-    public ResponseEntity<Void> deleteBlogById(Long id) {
+    public ResponseEntity<Void> deleteBlogById(Integer id) {
         if (id == null) {
             log.warn("Blog ID is null.");
             return ResponseEntity.badRequest().build();

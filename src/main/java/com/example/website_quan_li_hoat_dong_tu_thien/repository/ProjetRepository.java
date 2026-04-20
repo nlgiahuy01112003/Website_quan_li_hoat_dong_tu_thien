@@ -1,6 +1,6 @@
-package com.example.community.repos;
+package com.example.website_quan_li_hoat_dong_tu_thien.repository;
 
-import com.example.community.Entity.Projet;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.Projet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,11 +1,11 @@
-package com.example.community.Services.impl;
+package com.example.website_quan_li_hoat_dong_tu_thien.service.impl;
 
-import com.example.community.Entity.Role;
-import com.example.community.Entity.UserEntity;
-import com.example.community.Services.UserService;
-import com.example.community.dto.RegistrationDto;
-import com.example.community.repos.RoleRepository;
-import com.example.community.repos.UserRepository;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.Role;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.UserEntity;
+import com.example.website_quan_li_hoat_dong_tu_thien.service.UserService;
+import com.example.website_quan_li_hoat_dong_tu_thien.dto.RegistrationDto;
+import com.example.website_quan_li_hoat_dong_tu_thien.repository.RoleRepository;
+import com.example.website_quan_li_hoat_dong_tu_thien.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
     public void saveUser(RegistrationDto registrationDto) {
         UserEntity user = new UserEntity();
         user.setUsername(registrationDto.getUsername());
@@ -36,16 +35,15 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
-    @Override
+
     public List<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
-    @Override
+
     public UserEntity findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    @Override
     public UserEntity findByUsername(String username) {
         return userRepository.findByUsername(username);
     }

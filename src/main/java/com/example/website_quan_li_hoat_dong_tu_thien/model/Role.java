@@ -3,13 +3,12 @@ package com.example.website_quan_li_hoat_dong_tu_thien.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+
 import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-@Data
 @Entity
 @Table(name = "role")
 public class Role implements GrantedAuthority {
@@ -27,8 +26,18 @@ public class Role implements GrantedAuthority {
     private String description;
 
     @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
-    @ToString.Exclude
     private Set<User> users = new HashSet<>();
+
+    public Role() {}
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public Set<User> getUsers() { return users; }
+    public void setUsers(Set<User> users) { this.users = users; }
 
     @Override
     public String getAuthority() {

@@ -5,8 +5,7 @@ import com.example.website_quan_li_hoat_dong_tu_thien.model.Event;
 import com.example.website_quan_li_hoat_dong_tu_thien.service.CategoryService;
 import com.example.website_quan_li_hoat_dong_tu_thien.service.EventService;
 import com.example.website_quan_li_hoat_dong_tu_thien.service.MenuService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,17 +13,21 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/events")
-@RequiredArgsConstructor
-@Slf4j
 public class EventController {
     private final CategoryService categoryService;
     private final MenuService menuService;
     private final EventService eventService;
+
+    @Autowired
+    public EventController(CategoryService categoryService, MenuService menuService, EventService eventService) {
+        this.categoryService = categoryService;
+        this.menuService = menuService;
+        this.eventService = eventService;
+    }
 
     @GetMapping
     public String showEventList(Model model) {

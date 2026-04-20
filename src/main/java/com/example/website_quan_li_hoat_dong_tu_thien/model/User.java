@@ -2,9 +2,7 @@ package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.hibernate.Hibernate;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +13,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "User")
 public class User implements UserDetails {
@@ -53,6 +50,20 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    public User() {}
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String password) { this.password = password; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public String getProvider() { return provider; }
+    public void setProvider(String provider) { this.provider = provider; }
+    public Set<Role> getRoles() { return roles; }
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<Role> userRoles = this.getRoles();

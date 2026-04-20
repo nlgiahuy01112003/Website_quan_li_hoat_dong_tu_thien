@@ -2,8 +2,7 @@ package com.example.website_quan_li_hoat_dong_tu_thien.service;
 
 import com.example.website_quan_li_hoat_dong_tu_thien.model.Category;
 import com.example.website_quan_li_hoat_dong_tu_thien.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,12 +13,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
-@Slf4j
 public class CategoryService {
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(CategoryService.class);
+    
+    private final CategoryRepository categoryRepository;
+
     @Autowired
-    private CategoryRepository categoryRepository;
+    public CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
     // Trong CategoryService
     public List<Category> findAll() {
         return categoryRepository.findAll();
@@ -28,6 +31,9 @@ public class CategoryService {
         return categoryRepository.findByLink(link);
     }
     public ResponseEntity<Optional<Category>> getCategoryById(Integer id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()) {
             log.info("Category with ID {} found.", id);

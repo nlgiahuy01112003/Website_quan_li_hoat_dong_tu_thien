@@ -1,7 +1,7 @@
-package com.example.community.Services;
+package com.example.website_quan_li_hoat_dong_tu_thien.service;
 
-import com.example.community.Entity.Projet;
-import com.example.community.dto.ProjetDto;
+import com.example.website_quan_li_hoat_dong_tu_thien.entity.Projet;
+import com.example.website_quan_li_hoat_dong_tu_thien.dto.ProjetDto;
 
 
 import java.util.List;

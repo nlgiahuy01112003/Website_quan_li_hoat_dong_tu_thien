@@ -1,12 +1,10 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+
 import java.util.List;
-@Data
 @Entity
 @Table(name = "order_events")
-@RequiredArgsConstructor
 public class OrderEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +16,13 @@ public class OrderEvent {
 
     @OneToMany(mappedBy = "order")
     private List<OrderEventDetail> orderDetails;
+
+    public OrderEvent() {}
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getCustomerName() { return customerName; }
+    public void setCustomerName(String customerName) { this.customerName = customerName; }
+    public List<OrderEventDetail> getOrderDetails() { return orderDetails; }
+    public void setOrderDetails(List<OrderEventDetail> orderDetails) { this.orderDetails = orderDetails; }
 }

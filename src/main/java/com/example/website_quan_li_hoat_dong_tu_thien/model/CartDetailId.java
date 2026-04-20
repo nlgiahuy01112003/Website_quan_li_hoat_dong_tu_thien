@@ -1,20 +1,27 @@
 package com.example.website_quan_li_hoat_dong_tu_thien.model;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Data
 @Embeddable
-@NoArgsConstructor
-@AllArgsConstructor
 public class CartDetailId implements Serializable {
     private Long cartId;
-    private Long eventId; // Đổi tên từ eventId thành eventId
+    private Long eventId;
+
+    public CartDetailId() {}
+
+    public CartDetailId(Long cartId, Long eventId) {
+        this.cartId = cartId;
+        this.eventId = eventId;
+    }
+
+    public Long getCartId() { return cartId; }
+    public void setCartId(Long cartId) { this.cartId = cartId; }
+    public Long getEventId() { return eventId; }
+    public void setEventId(Long eventId) { this.eventId = eventId; }
 
     @Override
     public boolean equals(Object o) {

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 @Entity
 @Table(name = "Blog")
 public class Blog {
@@ -41,5 +43,26 @@ public class Blog {
 
     @Column(name = "HIDE", nullable = false)
     private boolean hide;
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getImg() { return img; }
+    public void setImg(String img) { this.img = img; }
+    public String getDetail() { return detail; }
+    public void setDetail(String detail) { this.detail = detail; }
+    public java.sql.Date getDateBegin() { return dateBegin; }
+    public void setDateBegin(java.sql.Date dateBegin) { this.dateBegin = dateBegin; }
+    public String getMeta() { return meta; }
+    public void setMeta(String meta) { this.meta = meta; }
+    public int getOrder() { return order; }
+    public void setOrder(int order) { this.order = order; }
+    public String getLink() { return link; }
+    public void setLink(String link) { this.link = link; }
+    public boolean isHide() { return hide; }
+    public void setHide(boolean hide) { this.hide = hide; }
 }
 

@@ -5,7 +5,6 @@ import com.example.website_quan_li_hoat_dong_tu_thien.model.OrderEvent;
 import com.example.website_quan_li_hoat_dong_tu_thien.model.OrderEventDetail;
 import com.example.website_quan_li_hoat_dong_tu_thien.repository.OrderEventDetailRepository;
 import com.example.website_quan_li_hoat_dong_tu_thien.repository.OrderEventRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,15 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 @Transactional
 public class OrderService {
-    @Autowired
     private final OrderEventRepository orderRepository;
-    @Autowired
     private final OrderEventDetailRepository orderDetailRepository;
+    private final CartService cartService;
+
     @Autowired
-    private final CartService cartService; // Assuming you have a CartService
+    public OrderService(OrderEventRepository orderRepository, OrderEventDetailRepository orderDetailRepository, CartService cartService) {
+        this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
+        this.cartService = cartService;
+    }
 
     @Transactional
     public OrderEvent createOrder(String customerName, List<CartItem> cartItems) {
